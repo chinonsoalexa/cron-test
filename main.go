@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"log"
-	"net/http"
 	"sync"
 	"time"
 
@@ -20,26 +19,26 @@ var (
 func myScheduledTask() {
 	defer wg.Done() // Decrement the wait group counter when the task is done
 	fmt.Println("Executing scheduled task: ", time.Now())
-	makeHTTPRequest()
+	// makeHTTPRequest()
 }
 
-func makeHTTPRequest() {
-	// Make an HTTP GET request to the local endpoint
-	resp, err := http.Get("http://localhost:3000")
-	if err != nil {
-		log.Println("HTTP request error:", err)
-		return
-	}
-	defer resp.Body.Close()
+// func makeHTTPRequest() {
+// 	// Make an HTTP GET request to the local endpoint
+// 	resp, err := http.Get("http://localhost:3000")
+// 	if err != nil {
+// 		log.Println("HTTP request error:", err)
+// 		return
+// 	}
+// 	defer resp.Body.Close()
 
-	// Check the response status
-	if resp.StatusCode != http.StatusOK {
-		log.Println("Unexpected response status:", resp.Status)
-		return
-	}
+// 	// Check the response status
+// 	if resp.StatusCode != http.StatusOK {
+// 		log.Println("Unexpected response status:", resp.Status)
+// 		return
+// 	}
 
-	fmt.Println("response body: ", resp.Body)
-}
+// 	fmt.Println("response body: ", resp.Body)
+// }
 
 func startWebServer() {
 	app := fiber.New()
